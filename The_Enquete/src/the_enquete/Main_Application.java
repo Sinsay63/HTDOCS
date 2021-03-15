@@ -48,7 +48,7 @@ public class Main_Application {
         suspect.add(suspect_4);
         Enquete.displaySuspect(suspect);
         System.out.println("");
-        Enquete.displayEnd(suspect);
+        Enquete.displayEnd(suspect_4);
         suspect.clear();
     
     }

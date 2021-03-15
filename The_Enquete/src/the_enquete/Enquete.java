@@ -34,9 +34,7 @@ public class Enquete {
             }
         }
     }
-    public static void displayEnd(ArrayList<Suspect> liste){
-        for (Suspect fin : liste){
-            System.out.println("L'enquête est terminée, le coupable est "+fin._prénom+" le "+fin._profession+".");
-        }
+    public static void displayEnd(Suspect suspectfinal){
+            System.out.println("L'enquête est terminée, le coupable est "+suspectfinal._prénom+" "+suspectfinal._nom+" le "+suspectfinal._profession+".");
     }
 }

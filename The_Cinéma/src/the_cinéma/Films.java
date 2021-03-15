@@ -1,4 +1,5 @@
 package the_cinéma;
+
 public class Films {
     
     private String _nom;
@@ -6,6 +7,14 @@ public class Films {
     private String _theme;
     private float _prix;
 
+    
+    public Films(String nom, String réalisateur, String theme,float prix){
+        this._nom=nom;
+        this._realisateur=réalisateur;
+        this._theme=theme;
+        this._prix=prix;
+    }
+    
     public String getNom() {
         return _nom;
     }

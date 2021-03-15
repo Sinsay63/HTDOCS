@@ -1,0 +1,231 @@
+html
+{
+	background-color: #eaeaea;
+	height: 100%;
+}
+
+body
+{
+	margin: 0;
+	display: flex;
+	justify-content: center;
+}
+
+.page-container
+{
+	width: 793px;
+	height: 1122px;
+	background-color: #FFFFFF;
+}
+
+.header{
+    height: 250px;
+    width:793px;
+    display:flex;
+}
+.imgentete
+{
+    width:793px;
+    height:250px;
+    position:absolute;
+}
+
+.head2{
+    display: flex;
+    width:793px;
+    z-index: 1;
+}
+.namestop{
+    font-family: Gill Sans, sans-serif;
+    font-weight: bold;
+    color:white;
+    font-size:40px;
+    width:65%;
+    align-self: flex-end;
+   margin-left:30px;    
+}
+.texttop{
+    margin-bottom:-5px;
+}
+.etudiant{
+    margin-bottom: 10px;
+    padding-top:5px;
+    font-size: 22px;
+    font-weight:initial;
+    font-family: initial;
+}
+.nametop{
+   height:35px;    
+}
+.avatar{
+    
+    width:35%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pp{
+    border: solid;
+    border-color: white;
+    height:180px;
+    border-radius: 50%;
+}
+
+.container{
+    display:flex;
+    width:793px;
+    height:872px;
+}
+.left-container{
+    width:42%;
+}
+.right-container{
+    width:58%;
+    background-color: #efefef;
+}
+
+.profil{
+    margin-top: 40px;
+    height:28%;
+    margin-left: 40px;
+}
+.titre{
+    font-family: 'Montserrat', classic;
+    font-weight: bold;
+    color: #666666;
+    font-size:20px;
+    padding-bottom: 10px; 
+}
+.trait{
+    width: 70px;
+    height: 6px;
+}
+.textprofil{
+    padding-top: 15px;
+    font-family: 'Montserrat', light;
+    color:#484848;
+    font-size: 16px;
+    
+}
+.li1{
+    padding-bottom: 10px;
+}
+
+p{
+    margin:0px;
+    
+}
+.contact{
+    margin-left: 40px;
+    margin-bottom: 6px;
+}
+
+.imgloca{
+    
+    width: 25px;
+}
+.textcontact{
+    
+    padding-top:15px;
+}
+.textecontact{
+    padding-top: 20px;
+    display:flex;
+    align-content: center;
+     font-family: 'Montserrat', light;
+    color:#484848;
+    font-size: 16px;
+}
+.loca{
+    
+    padding-right: 15px;
+}
+.textecontact2{
+    padding-top: 20px;
+    display:flex;
+    align-content: center;
+     font-family: 'Montserrat', light;
+    color:#484848;
+    font-size: 16px;
+}
+.mail{
+     padding-right: 15px;
+}
+.imgmail{
+    width: 25px;
+}
+.textecontact3{
+     padding-top: 20px;
+    display:flex;
+    align-content: center;
+     font-family: 'Montserrat', light;
+    color:#484848;
+    font-size: 16px;
+}
+.tel{
+    padding-right: 15px;
+}
+.imgtel{
+    width: 25px;
+}
+
+.hobbies{
+    margin-left: 40px;
+    padding-top:40px;
+}
+
+.listhobbies{
+    padding-top: 15px;
+    font-family: 'Montserrat', light;
+    color:#484848;
+    font-size: 16px;
+}
+
+.exppro{
+    margin-top: 40px;
+    height:28%;
+    margin-left: 40px;
+}
+
+.textexpepro{
+    padding-top: 15px;
+    display:flex;
+    align-content: center;
+     font-family: 'Montserrat', light;
+    color:#484848;
+    font-size: 15px;
+}
+.scolarite{
+    margin-left: 40px;
+}
+
+.listscolar{
+    padding-top: 15px;
+    font-family: 'Montserrat', light;
+    color:#484848;
+    font-size: 16px;
+}
+
+.listskill{
+    padding-top:15px;
+    display:flex;
+    align-content: center;
+     font-family: 'Montserrat', light;
+    color:#484848;
+    font-size: 16px;
+}
+.skill{
+    margin-top: 40px;
+    height:28%;
+    margin-left: 40px; 
+}
+
+.point{
+    padding-bottom: 10px;
+    list-style-type: none;
+}
+.stage{
+     list-style-type: none;
+     
+}

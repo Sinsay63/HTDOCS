@@ -1,0 +1,27 @@
+
+
+#pagetop {
+    text-align: center;
+}
+
+.contact {
+    font-size: 50px;
+    text-decoration: underline;
+    padding-bottom: 30px;
+}
+
+.img-contact{
+    width: 600px;
+    padding-bottom: 30px;
+}
+
+.content {
+ 
+   display: flex;
+   justify-content: center;
+
+}
+.content2 {
+    text-align: justify;
+    font-size: 25px;
+}

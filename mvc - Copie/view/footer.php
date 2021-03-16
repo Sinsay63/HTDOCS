@@ -5,4 +5,8 @@
         <title></title>
     </head>
     <body>
-        <h1>Bienvenue sur MyHistoria.</h1>
+        <footer>
+            <p>Réalisé par Yanis HOUDIER </p>
+        </footer>
+    </body>
+</html>

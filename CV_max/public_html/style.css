@@ -1,0 +1,40 @@
+html
+{
+	background-color: #eaeaea;
+	height: 100%;
+}
+
+body
+{
+	margin: 0;
+	display: flex;
+	justify-content: center;
+}
+
+.page-container
+{
+	width: 793px;
+	height: 1122px;
+	background-color: #FFFFFF;
+}
+
+
+.header{
+    display:flex;
+    width:793px;
+    height:20%;
+}
+.header2{
+   width:793px;
+    z-index: 1;
+    
+  
+}
+.imgtop{
+    width:793px;
+    position: absolute;
+    height:224.4px;
+}
+.textgauche{
+    color:white;
+}

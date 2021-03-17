@@ -55,12 +55,10 @@ public class Cinéma {
    }
    
    public void removeFilm(String movie_name){
-        for(int i=0;i<_listFilms.size();i++){
-            if(_listFilms.get(i).getNom().equals(movie_name)){
-                _listFilms.remove(i);
+        if(this.getFilm(movie_name)!=null){
+                _listFilms.remove(this.getFilm(movie_name));
             }
         }
     }
    
-   
-}
+

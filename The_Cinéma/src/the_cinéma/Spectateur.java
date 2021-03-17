@@ -23,14 +23,16 @@ public class Spectateur {
     }
     
     public void regardeFilm(Cinéma ciné,String movie_name){
-        if(ciné.getFilm(movie_name).getNom().equals(movie_name)){
-            float coût = ciné.getTrésorerie()+4.5f;
-            ciné.setTrésorerie(coût);
-            this._culturePoints++;
-            System.out.println("Le prix de la séance est de 4.5 € et la trésorerie du cinéma est de "+ciné.getTrésorerie()+" €.");
-        }
+        Films film = ciné.getFilm(movie_name);
+            if(film!=null){
+                float coût = ciné.getTrésorerie()+film.getPrix();
+                ciné.setTrésorerie(coût);
+                this._culturePoints++;
+                System.out.println("Le prix de la séance est de "+film.getPrix()+" € et la trésorerie du cinéma est de "+ciné.getTrésorerie()+" €.");
+                System.out.println(this.getPrénom()+" "+this.getNom()+" a "+this.getCulturePoints()+" point(s) de culture.");
+            }
         else{
             System.out.println("Le film que vous recherchez n'est pas disponible dans notre établissement. Veuillez-nous excuser.");
-        }
+        } 
     }
 }

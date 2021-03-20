@@ -1,7 +1,7 @@
 <?php
 
 class DataBaseLinker{
-    private static  $urlBDD="mysql:host=localhost;dbname=fireblog;charset=utf8;";
+    private static  $urlBDD="mysql:host=localhost;dbname=fireblog;";
     private static  $username="root";
     private static  $password="";
     private static  $connexion;

@@ -9,6 +9,7 @@ class ArticleDAO{
         $repons->execute(array($idarticle));
         $art=$repons->fetchAll();
         
+        if($art){
         $articleDTO= new ArticleDTO();
         
         foreach ($art as $value) {
@@ -19,6 +20,10 @@ class ArticleDAO{
         $articleDTO->setContent($value[3]);
         }
         return $articleDTO;
+        }
+        else{
+            return null;
+        }
     }
     static function getArticles(){
         $bdd= DataBaseLinker::getConnexion();
@@ -34,6 +39,21 @@ class ArticleDAO{
         $rep=$bdd->prepare("SELECT com.pseudo,com.dateParution,com.content from article as art,commentaire as com where art.idArticle = ? and art.idArticle = com.idArticle");
         $rep->execute(array($idart));
         $allcom=$rep->fetchAll();
-        return $allcom;
+        
+        if($allcom){
+            $tab=[];
+        foreach ($allcom as $value) {
+            $com= new CommentaireDTO();
+            
+            $com->setPseudo($value['pseudo']);
+            $com->setContent($value['content']);
+            $tab[]=$com;
+        }
+        
+        return $tab;
+        }
+        else{
+            return null;
+        }
     }
 }

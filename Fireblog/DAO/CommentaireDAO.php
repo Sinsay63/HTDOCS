@@ -15,17 +15,19 @@ class CommentaireDAO{
             
         $commentaireDTO->setIdCommentaire($value[0]);
         $commentaireDTO->setPseudo($value[1]);
-        $commentaireDTO->setContent($value[3]);
         $commentaireDTO->setDateParution($value[2]);
+        $commentaireDTO->setContent($value[3]);
         $commentaireDTO->setIdArticle($value[4]);
         }
         return $commentaireDTO;
     }
     static function insertCommentaire($commentaireDTO){
         $bdd= DataBaseLinker::getConnexion();
+        
         $pseudo=$commentaireDTO->getPseudo();
         $content=$commentaireDTO->getContent();
         $idarticle=$commentaireDTO->getIdArticle();
+        
         $repons=$bdd->prepare("INSERT INTO commentaire(pseudo,content,dateParution,idArticle) VALUES(?,?,CURDATE(),?) ");
         $repons->bindParam(1, $pseudo);
         $repons->bindParam(2, $content);

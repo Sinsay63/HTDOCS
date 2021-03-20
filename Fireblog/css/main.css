@@ -24,12 +24,12 @@ body,p,h1{
 .article_container{
     border:2px black solid;
     width:400px;
-    height:300px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: justify;
+    margin-bottom: 30px;
 }
 .titre{
     font-size: 25px;
@@ -66,4 +66,5 @@ form{
 .submit{
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
 }

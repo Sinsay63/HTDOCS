@@ -18,59 +18,57 @@
                 require('DTO/CommentaireDTO.php');
                 require('DAO/ArticleDAO.php');
                 require('DTO/ArticleDTO.php');
-
                 $articles=ArticleDAO::getArticles();      
                 
                 foreach ($articles as $art) { 
-                    $commentaires=ArticleDAO::getCommentairesByArticle($art['idArticle']);
+                    
                     ?>
                     <div class="article_container">
                         <div class="article">
                             <div class="titre">
-                            <?php
-                                echo $art['titre'];
-                            ?>
+                                <p><?php echo $art['titre']; ?> </p>
                             </div>
 
                             <div class="art_contenu">
-                            <?php
-                                echo $art['content'];
-                            ?>
+                            <p><?phpecho $art['content'];?></p>
                             </div>
                             <div class="date">
-                            <?php
-                                echo "Paru le ".$art['dateParution'];
-                            ?>
-                            </div>
+                            <p><?php echo "Paru le ".$art['dateParution']; ?></p>
+                             </div>
                         </div>
-                         <?php 
-                            foreach ($commentaires as $com) { ?>
+                         <?php
+                         $commentaires=ArticleDAO::getCommentairesByArticle($art['idArticle']);
+                         if($commentaires!=null){
+                            foreach ($commentaires as $com) { 
+                                ?>
                             <div class="commentaires">
-                                <p><?php echo $com['content'];?></p>
-                                <p>Écrit par <?php echo $com['pseudo'];?></p>
+                                <p><?php echo $com->getContent();?></p>
+                                <p>Écrit par <?php echo $com->getPseudo();?></p>
                             </div>
                             <?php  
                             }
-
+                         }
                             ?>
                         <div class="comment_container">
                             <p>Écrivez votre propre commentaire:</p>
                             <form action="" method="post">
                                     <input id="pseudo_bar" name="pseudo" type="text" placeholder="Entrez votre pseudo" maxlength="20">
                                     <input id="comment_bar" name="commentaire" type="text" placeholder="Entrez votre commentaire" maxlength="60">
+                                    <input type="hidden" name="<?php echo $_POST['idArticle'];?>">
                                     <div class="submit"><input id="btn_envoi" type="submit" value="Envoyer"></div>
                             </form>
                         </div>
                     </div>
                     <?php
-                    if(isset($_POST['pseudo'])&& isset($_POST['commentaire'])){
+                    
+                }
+                if(isset($_POST['pseudo'])&& isset($_POST['commentaire'])){
                         $commentaireDTO= new CommentaireDTO();
                         $commentaireDTO->setPseudo($_POST['pseudo']);
                         $commentaireDTO->setContent($_POST['commentaire']);
-                        $commentaireDTO->setIdArticle($art['idArticle']);
+                        $commentaireDTO->setIdArticle($_POST['idArticle']);
                         CommentaireDAO::insertCommentaire($commentaireDTO);
                     }
-                }
                 ?>
             </div>
         </div>

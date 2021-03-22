@@ -30,10 +30,10 @@
                             </div>
 
                             <div class="art_contenu">
-                            <p><?phpecho $art['content'];?></p>
+                            <p><?php echo $art['content'];?></p>
                             </div>
-                            <div class="date">
-                            <p><?php echo "Paru le ".$art['dateParution']; ?></p>
+                            <div class="Date">
+                                <p class="date"><?php echo "Paru le ".$art['dateParution']; ?></p>
                              </div>
                         </div>
                          <?php
@@ -42,7 +42,7 @@
                             foreach ($commentaires as $com) { 
                                 ?>
                             <div class="commentaires">
-                                <p><?php echo $com->getContent();?></p>
+                                <p class="com"><?php echo $com->getContent();?></p>
                                 <p>Écrit par <?php echo $com->getPseudo();?></p>
                             </div>
                             <?php  
@@ -51,24 +51,22 @@
                             ?>
                         <div class="comment_container">
                             <p>Écrivez votre propre commentaire:</p>
-                            <form action="" method="post">
-                                    <input id="pseudo_bar" name="pseudo" type="text" placeholder="Entrez votre pseudo" maxlength="20">
-                                    <input id="comment_bar" name="commentaire" type="text" placeholder="Entrez votre commentaire" maxlength="60">
-                                    <input type="hidden" name="<?php echo $_POST['idArticle'];?>">
-                                    <div class="submit"><input id="btn_envoi" type="submit" value="Envoyer"></div>
+                            <form action="index.php?idArticle=<?php echo $art['idArticle'];?>" method="post">
+                                <input id="pseudo_bar" name="pseudo" type="text" placeholder="Entrez votre pseudo" maxlength="20">
+                                <input id="comment_bar" name="commentaire" type="text" placeholder="" maxlength="60">
+                                <div class="submit"><input id="btn_envoi" type="submit" value="Envoyer"></div>
                             </form>
                         </div>
                     </div>
                     <?php
-                    
                 }
-                if(isset($_POST['pseudo'])&& isset($_POST['commentaire'])){
-                        $commentaireDTO= new CommentaireDTO();
-                        $commentaireDTO->setPseudo($_POST['pseudo']);
-                        $commentaireDTO->setContent($_POST['commentaire']);
-                        $commentaireDTO->setIdArticle($_POST['idArticle']);
-                        CommentaireDAO::insertCommentaire($commentaireDTO);
-                    }
+                if(isset($_POST['pseudo']) && isset($_POST['commentaire']) && isset($_GET['idArticle'])){
+                    $commentaireDTO= new CommentaireDTO();
+                    $commentaireDTO->setPseudo($_POST['pseudo']);
+                    $commentaireDTO->setContent($_POST['commentaire']);
+                    $commentaireDTO->setIdArticle($_GET['idArticle']);
+                    CommentaireDAO::insertCommentaire($commentaireDTO);
+                }
                 ?>
             </div>
         </div>

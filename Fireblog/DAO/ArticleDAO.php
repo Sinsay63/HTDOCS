@@ -49,7 +49,6 @@ class ArticleDAO{
             $com->setContent($value['content']);
             $tab[]=$com;
         }
-        
         return $tab;
         }
         else{

@@ -60,11 +60,31 @@ form{
 #btn_envoi{
     margin-top: 10px;
 }
-.commentaires p{
-    font-size: 15px;
-}
 .submit{
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
+}
+
+.commentaires{
+    border-bottom: 2px black solid;
+    padding-top: 10px ;
+    padding-bottom: 10px;
+}
+.com{
+    font-size: 20px;
+    padding-bottom: 7px;
+}
+.date{
+    display: flex;
+    justify-content: flex-end;
+}
+.Date{
+    padding-top: 10px;
+}
+.art_contenu{
+    padding-top: 10px;
+}
+.titre{
+    padding-top: 15px;
 }

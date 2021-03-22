@@ -28,7 +28,7 @@ class CommentaireDAO{
         $content=$commentaireDTO->getContent();
         $idarticle=$commentaireDTO->getIdArticle();
         
-        $repons=$bdd->prepare("INSERT INTO commentaire(pseudo,content,dateParution,idArticle) VALUES(?,?,CURDATE(),?) ");
+        $repons=$bdd->prepare("INSERT INTO commentaire(pseudo,content,idArticle,dateParution) VALUES(?,?,?,CURDATE()) ");
         $repons->bindParam(1, $pseudo);
         $repons->bindParam(2, $content);
         $repons->bindParam(3, $idarticle);
@@ -36,6 +36,5 @@ class CommentaireDAO{
         if($repons){
             header('location: index.php');
         }
-        
     }
 }

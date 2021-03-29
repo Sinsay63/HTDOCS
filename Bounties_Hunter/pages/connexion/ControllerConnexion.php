@@ -1,31 +1,28 @@
 <?php
-
+require_once('DAO/ChasseursDAO.php');
 Class ControllerConnexion{
     
-    static function includeView(){
+    function includeView(){
         require('Connexion.php');
     }
     
-    static function authenticate($pseudo,$password){
-        require('DAO/ChasseursDAO.php');
+    function  authenticate($pseudo,$password){
         $hunter=ChasseursDAO::CheckChasseurs($pseudo, $password);
         if($hunter!=null){
             $_SESSION['ID']=$hunter->getId();
-            self::redirectUser();
+            return true;
         }
         else{
-            header('location : index.php?page=connexion');
-            exit;
+            return false;
         }
     }
     
-    static function redirectUser(){
+    function redirectUser(){
         header('location: index.php?page=viewWanted');
         exit;
     }
     
     static function GetUserInfo($id){
-        require('DAO/ChasseursDAO.php');
         $hunter=ChasseursDAO::GetHunterInfo($id);
         return $hunter;
     }

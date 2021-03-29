@@ -28,7 +28,7 @@ public class Les_EscargOurs {
         Colo1.addEscargours(esca4);
         
         
-        //Colo1.banEscargours(esca3);
+        Colo1.banEscargours(esca3);
         System.out.println("Le nombre total de carapaces dans la colonie "+Colo1.getNom()+" est de "+Colo1.getTotalNbCarapaces(Colo1));
         
         esca1.displayCarapaces();

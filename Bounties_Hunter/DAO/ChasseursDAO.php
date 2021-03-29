@@ -1,10 +1,11 @@
 <?php
+require_once('tools/DataBaseLinker.php');
+require_once('DTO/ChasseursDTO.php');
 
 Class ChasseursDAO{
     
     static function CheckChasseurs($pseudo,$password){
-        require('tools/DataBaseLinker.php');
-        require('DTO/ChasseursDTO.php');
+        
         
         $bdd=DataBaseLinker::getConnexion();
         
@@ -17,16 +18,14 @@ Class ChasseursDAO{
             $hunter = new ChasseursDTO();
             $hunter->setId($chasseur['ID']);
             
-            
             return $hunter;
         }
         else{
             return null;
         }
     }
+    
     static function GetHunterInfo($id){
-        require('tools/DataBaseLinker.php');
-        require('DTO/ChasseursDTO.php');
         
         $bdd=DataBaseLinker::getConnexion();
          

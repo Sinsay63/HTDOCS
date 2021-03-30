@@ -1,5 +1,6 @@
 <h1>Liste des avis de recherches</h1>
 <?php 
+if(!empty($_SESSION['ID'])){
     $wanted= ControllerWanted::SearchAllWanted();
     if($wanted!=null){
         foreach ($wanted as $value) {
@@ -22,5 +23,9 @@
     else{
         echo 'Aucun avis de recherche';
     }
+}
+else{
+    header('location: index.php?page=connexion');
+}
 ?>
 

@@ -17,5 +17,5 @@ Class  DataBaseLinker{
     }
     
     return $bdd;
-    }   
+    }
 }

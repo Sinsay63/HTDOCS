@@ -1,0 +1,30 @@
+*{
+    font-family: sans-sherif;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+html,body{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:  center;
+}
+
+
+
+.myButton{
+    padding: 10px;
+    border: 2px solid white;
+    background-color: rgba(0,0,0,0.4);
+
+}

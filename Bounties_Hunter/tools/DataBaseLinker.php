@@ -6,7 +6,7 @@ Class  DataBaseLinker{
     
     $dsn = 'mysql:host=localhost;dbname=hunters';
     $user = 'root';
-    $password = '';
+    $password = 'root';
     try {
         $bdd = new PDO($dsn,$user,$password);
 

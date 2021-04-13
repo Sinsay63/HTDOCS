@@ -1,10 +1,9 @@
-let monbutton = document.querySelector('.myButton');
+const bloc = document.querySelector('.bloc');
 
 
-let onClick= function(){
-    document.body.style.backgroundColor='grey';
-    
-};
-
-monbutton.addEventListener('click',onClick);
-
+document.addEventListener('keydown', (ev) => {
+    if (ev.code === 'ArrowUp') {
+        console.log(ev);
+        bloc.style.margin += `5px`;
+    }
+});

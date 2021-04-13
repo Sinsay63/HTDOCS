@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="ep9.js" async></script>
-        <link rel="stylesheet" href="css.css"/>
-    </head>
-    <body>
-        <a href="#" class="myButton">Génére un background random</a>
-    </body>
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="calcu.js" async></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="calculatrice">
+        <div class="affichage" id="display">
+
+        </div>
+        <div class="bas">
+            <div class="numeros">
+                <div class="ligne1">
+                    <div id="1" class="numero"><button type="button">1</button></div>
+                    <div id="2" class="numero"><button type="button">2</button></div>
+                    <div id="3" class="numero"><button type="button">3</button></div>
+                </div>
+                <div class="ligne2">
+                    <div id="4" class="numero"><button type="button">4</button></div>
+                    <div id="5" class="numero"><button type="button">5</button></div>
+                    <div id="6" class="numero"><button type="button">6</button></div>
+                </div>
+                <div class="ligne3">
+                    <div id="7" class="numero"><button type="button">7</button></div>
+                    <div id="8" class="numero"><button type="button">8</button></div>
+                    <div id="9" class="numero"><button type="button">9</button></div>
+                </div>
+                <div class="ligne4">
+                    <div id="0" class="numero"><button type="button">0</button></div>
+                </div>
+            </div>
+            <div class="operateurs">
+                <div class="operateur" id="+"><button type="button">+</button></div>
+                <div class="operateur" id="-"><button type="button">-</button></div>
+                <div class="operateur" id="*"><button type="button">*</button></div>
+                <div id="=" class="operateur"><button type="button">=</button></div>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>

@@ -1,6 +1,6 @@
 package heritage;
 
-import java.util.Date;
+//import java.util.Date;
 
 public class Heritage {
 
@@ -15,11 +15,12 @@ public class Heritage {
 //       Time temps = new Time();
 //        System.out.println(temps.getTime());
 
+//Archeopteryx cheval = new Archeopteryx();
+//cheval.rugir();
+//cheval.voler();
 
-Archeopteryx cheval = new Archeopteryx();
-cheval.rugir();
-cheval.voler();
-
+    Rectangle forme1 = new Rectangle(4, 10);
+        System.out.println("L'aire de la forme est de "+forme1.getAire());
 
     }
 }

@@ -25,18 +25,18 @@ numeros.forEach((elem) => {
 
 operateurs.forEach((ope) => {
     ope.addEventListener('click', () => {
-        if (ope.id != '=') {
+        if (ope.id != 'egal') {
             if (premierNombres != '') {
                 operateur = `${premierNombres}${ope.id}`;
                 screen.innerText = `${operateur}`;
             }
         }
-        else if (ope.id === '=' && premierNombres != '' && operateur != '' & secondNombres != '') {
+        else if (ope.id === 'egal' && premierNombres != '' && operateur != '' & secondNombres != '') {
             let calcul = screen.innerText.split('');
             let pos;
             console.log(calcul);
             calcul.forEach((el, index) => {
-                if (el === '+' || el === '-' || el === '*') {
+                if (el === 'plus' || el === 'moins' || el === 'fois') {
                     pos = index;
                 }
             });
@@ -45,13 +45,13 @@ operateurs.forEach((ope) => {
 
             const Stringsigne = calcul.slice(pos, pos + 1).join('');
             let resultat;
-            if (Stringsigne === '+') {
+            if (Stringsigne === 'plus') {
                 resultat = partie1 + partie2;
             }
-            else if (Stringsigne === '-') {
+            else if (Stringsigne === 'moins') {
                 resultat = partie1 - partie2;
             }
-            else if (Stringsigne === '*') {
+            else if (Stringsigne === 'fois') {
                 resultat = partie1*partie2;
             }
             screen.innerText = resultat;

@@ -1,0 +1,86 @@
+body.toplevel_page_custom-imports .acf-field.acf-field-message:first-of-type {
+  background-color: #f3b467;
+  margin-bottom: 10px;
+  line-height: 0;
+  padding: 25px 25px 18px;
+}
+body.toplevel_page_custom-imports .acf-field.acf-field-message:first-of-type p {
+  margin: 0;
+}
+body.toplevel_page_custom-imports .acf-field.acf-field-file {
+  border-top: solid 2px #006799;
+}
+body.toplevel_page_custom-imports .line {
+  height: 15px;
+  width: 100%;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+  overflow: hidden;
+}
+body.toplevel_page_custom-imports .line.hide {
+  display: none;
+}
+body.toplevel_page_custom-imports .line .percent {
+  height: 100%;
+  width: 0;
+  background-color: #006799;
+  border-radius: 20px;
+  transition: All 0.3s linear;
+}
+body.toplevel_page_custom-imports .indic-custom {
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  top: 2px;
+}
+body.toplevel_page_custom-imports .indic-custom.hide {
+  display: none;
+}
+body.toplevel_page_custom-imports ul.deletelist {
+  display: none;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 160px;
+  border: solid 2px grey;
+  padding: 10px 10px 5px;
+  border-radius: 5px;
+}
+body.toplevel_page_custom-imports ul.deletelist.show {
+  display: flex;
+}
+body.toplevel_page_custom-imports ul.deletelist li {
+  padding: 5px 10px 7px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: solid 2px #006799;
+  border-radius: 4px;
+}
+body.toplevel_page_custom-imports ul.deletelist li.none {
+  color: #fff;
+  background-color: #424242;
+  border: solid 2px #424242;
+}
+body.toplevel_page_custom-imports ul.deletelist li.title {
+  background: transparent;
+  color: #444;
+  font-weight: bold;
+  border: solid 2px transparent;
+}
+body.toplevel_page_custom-imports .button-red {
+  background: #d35d5d;
+  border-color: #d35d5d #D34641 #D34641;
+  box-shadow: 0 1px 0 #D34641;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #D34641, 1px 0 1px #D34641, 0 1px 1px #D34641, -1px 0 1px #D34641;
+  display: none;
+}
+body.toplevel_page_custom-imports .button-red:hover, body.toplevel_page_custom-imports .button-red:active, body.toplevel_page_custom-imports .button-red:focus {
+  background: #d34146;
+  border-color: #d35d5d #D34641 #D34641;
+  color: #fff;
+}
+body.toplevel_page_custom-imports .button-red.show {
+  display: block;
+}

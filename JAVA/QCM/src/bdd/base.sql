@@ -1,0 +1,19 @@
+DROP DATABASE IF EXISTS qcm_java;
+CREATE DATABASE IF NOT EXISTS qcm_java
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE qcm_java;
+
+CREATE TABLE IF NOT EXISTS Question(
+	idQuestion INT NOT NULL AUTO_INCREMENT,
+	enonce VARCHAR(255),
+	PRIMARY KEY (idQuestion)
+);
+
+CREATE TABLE IF NOT EXISTS Choix(
+	idChoix INT AUTO_INCREMENT PRIMARY KEY,
+	enonce VARCHAR(255),
+	correct BOOLEAN,
+	idQuestion INT(11) NOT NULL,
+	FOREIGN KEY (idQuestion) REFERENCES Question(idQuestion)
+);

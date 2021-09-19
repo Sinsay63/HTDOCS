@@ -66,6 +66,7 @@
                     $commentaireDTO->setContent($_POST['commentaire']);
                     $commentaireDTO->setIdArticle($_GET['idArticle']);
                     CommentaireDAO::insertCommentaire($commentaireDTO);
+                    header('location: index.php');
                 }
                 ?>
             </div>

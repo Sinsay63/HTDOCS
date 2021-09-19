@@ -33,8 +33,5 @@ class CommentaireDAO{
         $repons->bindParam(2, $content);
         $repons->bindParam(3, $idarticle);
         $repons->execute();
-        if($repons){
-            header('location: index.php');
-        }
     }
 }

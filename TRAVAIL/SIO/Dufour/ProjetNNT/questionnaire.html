@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <link rel="stylesheet" href="pages.css">
+        <title>Questionnaire</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Changa&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="page-container">
+            <div class="cotes"></div>
+            <div class="midquest">
+                <img class="banner" src="images/banner.jpg" alt=""/>
+                <nav>
+                    <ul>
+                        <li><a class="btn-grad" href="index.html"><p class="txtnav">Synopsis</p></a></li>
+                        <li><a class="btn-grad" href="perso.html" ><p class="txtnav">Personnages</p></a></li>
+                        <li><a class="btn-grad" href="lieux.html"><p class="txtnav">Lieux</p></a></li>
+                        <li><a class="btn-grad" href="questionnaire.html"><p class="txtnav">Quizz</p></a></li>
+                    </ul>
+                </nav>
+                    <div class="separe2">
+                        <img class="img1" src="images/cote.png" alt=""/>
+                        <img src="images/cote3.png" alt=""/>
+                    </div>
+                <div class="diapo">
+                    <form action="quizz.php" method="post">
+                        <div class="elements">
+                            <div class="element">
+                                <img class="imageslide" src="images/wpmelio.png" alt="Image 1">
+                                <div class="caption">
+                                    <p>Quel est le nombre de péchés capitaux?</p>
+                                    <input class="saisie" type="text" name="q1" placeholder="Saisir votre réponse -:)"  maxlength="25" />
+                                    <div class="prevnext">
+                                        <button id="nav-gauche" type="button"> Précédent </button>
+                                        <button id="nav-droite" type="button"> Suivant </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="element">
+                                <img class="imageslide" src="images/wpdiane.png" alt="Image 2">
+                                <div class="caption">
+                                    <p>Comment s'appelle leur capitaine ?</p>
+                                    <input class="saisie" type="text" name="q2" placeholder="Saisir votre réponse -:)" maxlength="25" />
+                                    <div class="prevnext">
+                                        <button id="nav-gauche2" type="button"> Précédent </button>
+                                        <button id="nav-droite2" type="button"> Suivant </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="element">
+                                <img class="imageslide" src="images/wpban.jpg" alt="Image 3">
+                                <div class="caption">
+                                    <p>Dans quel royaume se déroule l'histoire ?</p>
+                                    <input class="saisie" type="text" name="q3" placeholder="Saisir votre réponse -:)" maxlength="25" />
+                                    <div class="prevnext">
+                                        <button id="nav-gauche3" type="button"> Précédent </button>
+                                        <button id="nav-droite3" type="button"> Suivant </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="element">
+                                <img class="imageslide" src="images/wpking.png" alt="Image 4">
+                                <div class="caption">
+                                    <p>De quoi est recouvert la fôret des Rêves Blanc ?</p>
+                                    <input class="saisie" type="text" name="q4" placeholder="Saisir votre réponse -:)" maxlength="25" />
+                                    <div class="prevnext">
+                                        <button id="nav-gauche4" type="button"> Précédent </button>
+                                        <button id="nav-droite4" type="button"> Suivant </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="element">
+                                <img class="imageslide" src="images/wpgowther.jpg" alt="Image 5">
+                                <div class="caption">
+                                    <p>A quel clan appartient King ?</p>
+                                    <input class="saisie" type="text" name="q5" placeholder="Saisir votre réponse -:)" maxlength="25" />
+                                    <div class="prevnext">
+                                        <button id="nav-gauche5" type="button"> Précédent </button>
+                                        <button id="nav-droite5" type="button"> Suivant </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="element">
+                                <img class="imageslide" src="images/wpmerlin.jpg" alt="Image 6">
+                                <div class="caption">
+                                    <p>De qui est amoureux Escanor ?</p>
+                                    <input class="saisie" type="text" name="q6" placeholder="Saisir votre réponse -:)" maxlength="25" />
+                                    <div class="prevnext">
+                                        <button id="nav-gauche6" type="button"> Précédent </button>
+                                        <button id="nav-droite6" type="button"> Suivant </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="element">
+                                <img class="imageslide" src="images/wpesca.png" alt="Image 7">
+                                <div class="caption">
+                                    <p>Comment se nomme la taverne de Meliodas ? </p>
+                                    <input class="saisie" type="text" name="q7" placeholder="Saisir votre réponse -:)" maxlength="25" />
+                                    <div class="prevnext">
+                                        <button id="nav-gauche7" type="button"> Précédent </button>
+                                        <button id="nav-droite7" type="button"> Suivant </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="element">
+                                <img class="imageslide" src="images/wpelisabeth.png" alt="Image 8">
+                                <div class="caption">
+                                    <p>Quel type d'arme utilise Ban ?</p>
+                                    <input class="saisie" type="text" name="q8" placeholder="Saisir votre réponse -:)" maxlength="25" />
+                                    <div class="prevnext">
+                                        <button id="nav-gauche8" type="button"> Précédent </button>
+                                        <button id="nav-droite8" type="button"> Suivant </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="element">
+                                <img class="imageslide" src="images/wpbanmel.png" alt="Image 9">
+                                <div class="caption">
+                                    <p>Qui est associé au péché de la Luxure ?</p>
+                                    <input class="saisie" type="text" name="q9" placeholder="Saisir votre réponse -:)"  maxlength="25" />
+                                    <div class="prevnext">
+                                        <button id="nav-gauche9" type="button"> Précédent </button>
+                                        <button id="nav-droite9" type="button"> Suivant </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="element">
+                                <img class="imageslide" src="images/wp7peches.jpg" alt="Image 10">
+                                <div class="caption">
+                                    <p>Qui est la meilleure amie de Diane ?</p>
+                                    <input class="saisie" type="text" name="q10" placeholder="Saisir votre réponse -:)" maxlength="25" />
+                                    <div class="prevnext">
+                                        <button id="nav-gauche10" type="button"> Précédent </button>
+                                        <input class="send" type="submit" value="Réponses">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="separe2">
+                    <img class="img1" src="images/cote3.png" alt=""/>
+                    <img src="images/cote2.png" alt=""/>
+                </div>
+                <script src="scripts.js"></script>
+            </div>
+            <div class="cotes"></div>
+        </div>
+    </body>
+</html>
+
+
+
+

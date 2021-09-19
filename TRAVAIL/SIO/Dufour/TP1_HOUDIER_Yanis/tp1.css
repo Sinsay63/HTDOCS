@@ -1,0 +1,54 @@
+
+img {
+    width: 300px;
+}
+.test {
+	font-size: 100%;
+}
+
+#monid {
+	height :10px;
+}
+
+*
+{
+ 
+  font-weight: bold;
+}
+
+.toust
+{
+	 text-decoration: line-through;
+}
+
+h1::first-line
+{ 
+color: red;
+}
+
+button:hover {
+	background-color:green;
+}
+
+
+.centre
+{
+display: flex;
+justify-content:center;
+}
+
+ul {
+display: flex;
+justify-content:center;
+}	
+
+ol{
+	display:flex;
+	justify-content:center;
+}
+*
+ {
+	text-align:center;
+}
+
+

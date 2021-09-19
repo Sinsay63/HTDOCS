@@ -1,0 +1,86 @@
+.titre{
+    text-align: center;
+	margin-top: 1%;
+	font-size:55px;
+	text-decoration:underline;
+}
+.container-blocks{
+	display: flex;
+	justify-content:center;
+	margin-top:1.5%;
+}
+
+.jaune {
+	text-align:center;
+    background-color: yellow;
+}
+
+.orange {
+	text-align:center;
+    background-color: orange;
+	margin-left:300px;
+}
+
+
+.img1 {
+	padding-top:5px;
+	width:350px;
+	padding-right:15px;
+	padding-left:15px;
+	padding-bottom:5px;
+}
+
+.img2 {
+	padding-top:5px;
+	width:350px;
+	padding-right:15px;
+	padding-left:15px;
+	padding-bottom:5px;
+}
+
+.parcours {
+	font-size:30px;
+	font-weight:bold;
+	margin-bottom:5px;
+	
+}
+
+.text {
+	font-size:20px;
+}
+
+
+.container-blocks2{
+	display: flex;
+	justify-content:center;
+	margin-top:3%;
+}
+
+.vert {
+	text-align:center;
+	background-color: green;
+	margin-left:30px;
+  
+}
+.bleu {
+	text-align:center;
+	margin-left:300px;
+    background-color: blue;
+
+	
+}
+
+.img3 {
+	padding-top:5px;
+	width:350px;
+	padding-right:15px;
+	padding-left:15px;
+	padding-bottom:5px;
+}
+.img4 {
+	padding-top:5px;
+	width:320px;
+	padding-right:15px;
+	padding-left:15px;
+	padding-bottom:5px;
+}

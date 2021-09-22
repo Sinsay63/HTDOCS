@@ -1,0 +1,8 @@
+com\sio\seriestv\DTO\SerieDTO.class
+com\sio\seriestv\DAO\SerieDAO.class
+com\sio\seriestv\SerieTV.class
+com\sio\seriestv\tools\DataBaseLinker.class
+module-info.class
+com\sio\seriestv\App.class
+com\sio\seriestv\DAO\ActeurDAO.class
+com\sio\seriestv\DTO\ActeurDTO.class

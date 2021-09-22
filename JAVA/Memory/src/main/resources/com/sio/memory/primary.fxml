@@ -23,7 +23,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Button fx:id="btnRestart" layoutX="274.0" layoutY="561.0" mnemonicParsing="false" text="Restart" />
-      <Label fx:id="labCoup" layoutX="31.0" layoutY="27.0" prefHeight="19.0" prefWidth="548.0" text="nb coup" />
+      <Button fx:id="resetBtn" layoutX="274.0" layoutY="561.0" mnemonicParsing="false" onAction="#resetGame" text="Reset" />
+      <Label fx:id="labCoup" layoutX="31.0" layoutY="27.0" prefHeight="19.0" prefWidth="548.0" text="Essais : 0" />
    </children>
 </Pane>

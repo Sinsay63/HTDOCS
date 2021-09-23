@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="scene2" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sio.seriestv.DetailsSerieTV">
    <children>
-      <Pane layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="588.0">
+      <Pane layoutX="1.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="588.0">
          <children>
             <Label fx:id="labNomSerie" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="51.0" prefHeight="17.0" prefWidth="588.0" text="Nom série" textAlignment="CENTER">
                <font>

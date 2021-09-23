@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,7 +21,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,7 +31,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class DetailsSerieTV extends Application implements Initializable {
 
@@ -69,6 +66,7 @@ public class DetailsSerieTV extends Application implements Initializable {
     }
 
     private void displayDetails(SerieDTO serie) throws SQLException {
+        labNomSerie.setText(Data.Tserie.getNom());
         grilleActeurs = new GridPane();
         scrollPaneActeurs.setContent(grilleActeurs);
         grilleActeurs.setMinWidth(450);
@@ -83,12 +81,11 @@ public class DetailsSerieTV extends Application implements Initializable {
         imgSerie.setFitHeight(100);
         imgSerie.setFitWidth(100);
         displayActeurs(serie);
-
     }
 
     private void displayActeurs(SerieDTO serie) throws SQLException {
         grilleActeurs.getChildren().clear();
-        int size = serie.getListeActeurs().size() -1;
+        int size = serie.getListeActeurs().size();
         for (ActeurDTO acteur : serie.getListeActeurs()) {
             Label infoActeur = new Label(acteur.getNom() + " " + acteur.getPrenom());
             Button btnDelete = new Button("Retirer de la liste");
@@ -96,19 +93,17 @@ public class DetailsSerieTV extends Application implements Initializable {
             div.setAlignment(Pos.CENTER);
             grilleActeurs.add(div, 0, cpt);
             div.getChildren().addAll(infoActeur, btnDelete);
-            EventHandler<MouseEvent> deleteActeur = new EventHandler<MouseEvent>() {
+            btnDelete.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent e) {
                     try {
                         deleteActeurSerie(serie.getId(), acteur.getId());
-                        
                     }
                     catch (SQLException ex) {
                         Logger.getLogger(DetailsSerieTV.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-            };
-            btnDelete.addEventHandler(MouseEvent.MOUSE_CLICKED, deleteActeur);
+            });
             if (cpt < size) {
                 cpt++;
             }
@@ -119,23 +114,14 @@ public class DetailsSerieTV extends Application implements Initializable {
     public void deleteSerie() throws SQLException, IOException {
         SerieDAO.deleteSerie(Data.Tserie);
         switchToCatalogue();
+
     }
 
     private void deleteActeurSerie(int idSerie, int idActeur) throws SQLException {
-        SerieDAO.deleteActeurFromSerie(idSerie, idActeur);
-        displayActeurs(Data.Tserie);
+        SerieDAO.deleteActeurFromSerieById(idSerie, idActeur);
+
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        labNomSerie.setText(Data.Tserie.getNom());
-        try {
-            displayDetails(Data.Tserie);
-        }
-        catch (SQLException ex) {
-            Logger.getLogger(DetailsSerieTV.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     @Override
     public void start(final Stage primaryStage) {
@@ -150,9 +136,9 @@ public class DetailsSerieTV extends Application implements Initializable {
         TextField prenom = new TextField();
         nom.setPromptText("Saisir son nom");
         prenom.setPromptText("Saisir son prénom");
-        Button add = new Button("Ajouter l'acteur");
-        dialogVbox.getChildren().addAll(type, nom, prenom, add);
-        add.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+        Button addBtn = new Button("Ajouter l'acteur");
+        dialogVbox.getChildren().addAll(type, nom, prenom, addBtn);
+        addBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
                 try {
@@ -162,22 +148,26 @@ public class DetailsSerieTV extends Application implements Initializable {
                     Logger.getLogger(DetailsSerieTV.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 dialog.hide();
-                try {
-                    
-                    displayActeurs(Data.Tserie);
-                }
-                catch (SQLException ex) {
-                    Logger.getLogger(DetailsSerieTV.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         });
         Scene dialogScene = new Scene(dialogVbox, 300, 200);
+
         dialog.setScene(dialogScene);
+
         dialog.show();
-        System.out.println(nom.getText() + " - " + prenom.getText());
     }
 
     public void add() throws SQLException {
         start(Data.stage);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        try {
+            displayDetails(Data.Tserie);
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DetailsSerieTV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

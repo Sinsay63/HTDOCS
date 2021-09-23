@@ -36,10 +36,12 @@ public class SerieDAO {
 
     public static void deleteSerie(SerieDTO serie) throws SQLException {
         Connection bdd = DataBaseLinker.getConnexion();
-
+        
+        deleteActeurFromSerie(serie);
         PreparedStatement state = bdd.prepareStatement("DELETE FROM Serie WHERE idSerie = ?");
         state.setInt(1, serie.getId());
         state.execute();
+
     }
 
     public static SerieDTO getSerieByNom(String nom) throws SQLException {
@@ -74,14 +76,13 @@ public class SerieDAO {
 
     private static SerieDTO getAnySerie(ResultSet result) throws SQLException {
         Connection bdd = DataBaseLinker.getConnexion();
-        SerieDTO serie = null;
         result.next();
         int id = result.getInt("idSerie");
         String nom = result.getString("nomSerie");
         String cheminPhoto = result.getString("imgCouverture");
         Date date = result.getDate("dateDiffusion");
         int nbEpisode = result.getInt("nbEpisodes");
-        serie = new SerieDTO(id, nom, date, nbEpisode, cheminPhoto);
+        SerieDTO serie = new SerieDTO(id, nom, date, nbEpisode, cheminPhoto);
 
         PreparedStatement state2 = bdd.prepareStatement("SELECT idActeur FROM serie_acteur WHERE idSerie = ?");
         state2.setInt(1, id);
@@ -105,7 +106,7 @@ public class SerieDAO {
         return serie;
     }
 
-    public static void deleteActeurFromSerie(int idSerie, int idActeur) throws SQLException {
+    public static void deleteActeurFromSerieById(int idSerie, int idActeur) throws SQLException {
         Connection bdd = DataBaseLinker.getConnexion();
 
         PreparedStatement state = bdd.prepareStatement("DELETE FROM serie_acteur WHERE idSerie = ? and idActeur = ?");
@@ -123,6 +124,31 @@ public class SerieDAO {
             PreparedStatement state3 = bdd.prepareStatement("DELETE FROM acteur WHERE idActeur = ?");
             state3.setInt(1, idActeur);
             state3.execute();
+        }
+    }
+
+    public static void deleteActeurFromSerie(SerieDTO serie) throws SQLException {
+        Connection bdd = DataBaseLinker.getConnexion();
+
+        PreparedStatement state = bdd.prepareStatement("DELETE FROM serie_acteur WHERE idSerie = ? ");
+        state.setInt(1, serie.getId());
+
+        state.execute();
+        for (ActeurDTO acteur : serie.getListeActeurs()) {
+            PreparedStatement state1 = bdd.prepareStatement("DELETE FROM acteur WHERE idActeur = ?");
+            state1.setInt(1, acteur.getId());
+            state1.execute();
+
+            PreparedStatement state2 = bdd.prepareStatement("SELECT * FROM serie_acteur WHERE idActeur = ?");
+            state2.setInt(1, acteur.getId());
+
+            ResultSet result2 = state2.executeQuery();
+
+            if (!result2.next()) {
+                PreparedStatement state3 = bdd.prepareStatement("DELETE FROM acteur WHERE idActeur = ?");
+                state3.setInt(1, acteur.getId());
+                state3.execute();
+            }
         }
     }
 

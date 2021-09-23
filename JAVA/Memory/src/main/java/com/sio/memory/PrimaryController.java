@@ -35,7 +35,7 @@ public class PrimaryController implements Initializable {
     private Button resetBtn;
 
     private boolean turned = false;
-    
+
     private int trouved = 0;
 
     @FXML
@@ -46,8 +46,8 @@ public class PrimaryController implements Initializable {
                 grilleJeu.getChildren().clear();
                 cpt = 0;
                 addCarte();
-                nbCoup=0;
-                trouved=0;
+                nbCoup = 0;
+                trouved = 0;
                 labCoup.setText("Essais : " + nbCoup);
             }
         };
@@ -83,12 +83,13 @@ public class PrimaryController implements Initializable {
     private void game(MouseEvent e) {
         Carte card = (Carte) e.getSource();
         PauseTransition pause = new PauseTransition(Duration.seconds(1));
-        if(turned == false) {
+        if (turned == false) {
             if (!card.getEtatCarte().equals("découvert")) {
                 if (this.SelectedCarte == null) {
                     this.SelectedCarte = card;
                     card.ShowCarte();
-                } else {
+                }
+                else {
                     card.ShowCarte();
                     if (card != this.SelectedCarte) {
                         if (this.SelectedCarte.getNumCarte() == card.getNumCarte()) {
@@ -97,17 +98,19 @@ public class PrimaryController implements Initializable {
                             this.SelectedCarte.ShowCarte();
                             this.SelectedCarte = null;
                             this.trouved++;
-                        } else {
+                        }
+                        else {
                             pause.setOnFinished((ev) -> {
                                 changeCard(card);
                                 turned = false;
                             });
                             pause.play();
-                            turned=true;
+                            turned = true;
                         }
                         this.nbCoup += 1;
                         labCoup.setText("Essais : " + this.nbCoup);
-                    } else {
+                    }
+                    else {
                         card.HideCarte();
                         this.SelectedCarte = null;
                         this.nbCoup += 1;
@@ -116,8 +119,8 @@ public class PrimaryController implements Initializable {
                 }
             }
         }
-        if(trouved == 8){
-            labCoup.setText("VOUS AVEZ TROUVÉ TOUTES LES PAIRES EN "+nbCoup+" COUPS! BIEN JOUÉ!!");
+        if (trouved == 8) {
+            labCoup.setText("VOUS AVEZ TROUVÉ TOUTES LES PAIRES EN " + nbCoup + " COUPS! BIEN JOUÉ!!");
         }
     }
 

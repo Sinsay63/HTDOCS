@@ -6,8 +6,7 @@ public class ActeurDTO {
     private String nom;
     private String prenom;
 
-    public ActeurDTO(int id, String nom, String prenom) {
-        this.id = id;
+    public ActeurDTO(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
     }

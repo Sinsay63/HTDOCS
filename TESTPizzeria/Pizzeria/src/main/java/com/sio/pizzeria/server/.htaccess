@@ -1,0 +1,7 @@
+# Turn rewrite engine on
+Options +FollowSymlinks
+RewriteEngine on
+
+# map neat URL to internal URL
+RewriteRule ^produit$   index.php [nc,qsa]
+RewriteRule ^produit/([0-9]+)$   index.php [nc,qsa]

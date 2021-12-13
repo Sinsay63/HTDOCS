@@ -1,0 +1,46 @@
+html {
+    font-family: Arial;
+}
+
+.container-aventuriers {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-aventurier {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.nom-aventurier {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.emplacement-fiche {
+    width: 200px;
+    height: 250px;
+    background: #eaeaea;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.citation {
+    padding-top: 5px;
+    font-style: italic;
+    font-family: Times New Roman;
+}
+
+.emplacement-competences {
+    width: 200px;
+    min-height: 60px;
+    background: #b9dafd;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.nom-aventurier {
+    display: block;
+    margin: 5px 0;
+}

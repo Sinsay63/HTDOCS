@@ -13,8 +13,7 @@ public class SerieDTO {
     private String imgCouverture;
     private ArrayList<ActeurDTO> listeActeurs;
 
-    public SerieDTO(int id, String nom, Date dateDiffusion, int nbEpisodes, String imgCouverture) {
-        this.id = id;
+    public SerieDTO(String nom, Date dateDiffusion, int nbEpisodes, String imgCouverture) {
         this.nom = nom;
         this.dateDiffusion = dateDiffusion;
         this.nbEpisodes = nbEpisodes;

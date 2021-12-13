@@ -4,21 +4,26 @@ import com.sio.seriestv.DAO.ActeurDAO;
 import com.sio.seriestv.DAO.SerieDAO;
 import com.sio.seriestv.DTO.ActeurDTO;
 import com.sio.seriestv.DTO.SerieDTO;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.animation.PauseTransition;
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -29,10 +34,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class DetailsSerieTV extends Application implements Initializable {
+public class DetailsSerieTV implements Initializable {
 
     @FXML
     private Label labNomSerie;
@@ -57,6 +63,11 @@ public class DetailsSerieTV extends Application implements Initializable {
     @FXML
     private Button btnAddActeur;
 
+    @FXML
+    private Button btnEditSerie;
+
+    private File selectedFile;
+
     private int cpt = 0;
 
     @FXML
@@ -78,8 +89,8 @@ public class DetailsSerieTV extends Application implements Initializable {
         labNbEpisodes.setText(serie.getNbEpisodes() + " épisode(s)");
         Image img = new Image(getClass().getResourceAsStream("/images/" + serie.getImgCouverture()));
         imgSerie.setImage(img);
-        imgSerie.setFitHeight(100);
-        imgSerie.setFitWidth(100);
+        imgSerie.setFitHeight(200);
+        imgSerie.setFitWidth(200);
         displayActeurs(serie);
     }
 
@@ -119,12 +130,12 @@ public class DetailsSerieTV extends Application implements Initializable {
 
     private void deleteActeurSerie(int idSerie, int idActeur) throws SQLException {
         SerieDAO.deleteActeurFromSerieById(idSerie, idActeur);
+        Data.Tserie = SerieDAO.getSerieById(idSerie);
+        displayActeurs(Data.Tserie);
 
     }
 
-
-    @Override
-    public void start(final Stage primaryStage) {
+    public void popUpAddActeur(final Stage primaryStage) {
 
         final Stage dialog = new Stage();
         dialog.setTitle("Création & Ajout d'un acteur à la série " + Data.Tserie.getNom());
@@ -143,6 +154,8 @@ public class DetailsSerieTV extends Application implements Initializable {
             public void handle(MouseEvent e) {
                 try {
                     ActeurDAO.createActeurSerie(new ActeurDTO(nom.getText(), prenom.getText()), Data.Tserie.getId());
+                    Data.Tserie = SerieDAO.getSerieById(Data.Tserie.getId());
+                    displayActeurs(Data.Tserie);
                 }
                 catch (SQLException ex) {
                     Logger.getLogger(DetailsSerieTV.class.getName()).log(Level.SEVERE, null, ex);
@@ -151,14 +164,13 @@ public class DetailsSerieTV extends Application implements Initializable {
             }
         });
         Scene dialogScene = new Scene(dialogVbox, 300, 200);
-
         dialog.setScene(dialogScene);
 
         dialog.show();
     }
 
     public void add() throws SQLException {
-        start(Data.stage);
+        popUpAddActeur(Data.stage);
     }
 
     @Override
@@ -170,4 +182,82 @@ public class DetailsSerieTV extends Application implements Initializable {
             Logger.getLogger(DetailsSerieTV.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void popUpModifSerie(Stage stage) {
+        final Stage dialog = new Stage();
+        dialog.setTitle("Modification de la série ");
+        dialog.initModality(Modality.NONE);
+        dialog.initOwner(stage);
+        VBox dialogVbox = new VBox(20);
+        Text type = new Text("Modification de " + Data.Tserie.getNom());
+        TextField nom = new TextField(Data.Tserie.getNom());
+        DatePicker dateDiff = new DatePicker();
+        dateDiff.setValue(LocalDate.parse(Data.Tserie.getDateDiffusion().toString()));
+        TextField nbEpisodes = new TextField(Data.Tserie.getNbEpisodes() + "");
+        Button btnImg = new Button("Sélectionner une image de couverture");
+        FileChooser file = new FileChooser();
+
+        btnImg.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                selectedFile = file.showOpenDialog(dialog);
+
+            }
+        });
+        file.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
+        Button addBtn = new Button("Modifier");
+        dialogVbox.getChildren().addAll(type, nom, nbEpisodes, btnImg, dateDiff, addBtn);
+        addBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                String nomSerie = nom.getText();
+                String imgCouverture = "";
+                int nombreEpisodes = Integer.parseInt(nbEpisodes.getText());
+                if (nomSerie.equals("")) {
+                    nomSerie = Data.Tserie.getNom();
+                }
+                if (nombreEpisodes <= 0) {
+                    nombreEpisodes = Data.Tserie.getNbEpisodes();
+                }
+                if (selectedFile == null) {
+                    imgCouverture = Data.Tserie.getImgCouverture();
+                }
+                else {
+                    imgCouverture = selectedFile.getName();
+
+                }
+                try {
+                    Path copied = Paths.get("images/"+nomSerie+".jpg");
+                    Path originalPath = Paths.get(imgCouverture.replace("file:/", ""));
+                    Files.copy(originalPath, copied, StandardCopyOption.REPLACE_EXISTING);
+                }
+                catch (IOException ex) {
+                    Logger.getLogger(DetailsSerieTV.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Date dateDiffusion = Date.valueOf(dateDiff.getValue());
+                SerieDTO serie = new SerieDTO(nomSerie, dateDiffusion, nombreEpisodes, imgCouverture);
+                serie.setId(Data.Tserie.getId());
+                try {
+                    SerieDAO.updateSerie(serie);
+                    Data.Tserie = serie;
+                    displayDetails(serie);
+                }
+                catch (SQLException ex) {
+                    Logger.getLogger(DetailsSerieTV.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                Data.Tserie = serie;
+                dialog.hide();
+            }
+        });
+        Scene dialogScene = new Scene(dialogVbox, 300, 350);
+        dialog.setScene(dialogScene);
+
+        dialog.show();
+    }
+
+    public void modifSerie() {
+        popUpModifSerie(Data.stage);
+    }
+
 }

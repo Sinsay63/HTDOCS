@@ -1,0 +1,208 @@
+{
+    "carte":
+    {
+        "code_url": "carte",
+        "libelle": "Notre carte",
+        "produits": {
+            "sushi" : [
+                {
+                    "libelle": "Sushi oeufs de saumon",
+                    "photo": "sushi-oeufs-saumon.png",
+                    "prix": 3.80,
+                    "quantite": 3
+                },
+                {
+                    "libelle": "Sushi saumon",
+                    "photo": "sushi-saumon.png",
+                    "prix": "3.60",
+                    "quantite": 2
+                },
+                {
+                    "libelle": "Sushi thon",
+                    "photo": "sushi-thon.png",
+                    "prix": 3.80,
+                    "quantite": 2
+                },
+                {
+                    "libelle": "Sushi saumon teriyaki",
+                    "photo": "sushi-saumon-teriyaki.png",
+                    "prix": 3.90,
+                    "quantite": 2                    
+                },  
+                {
+                    "libelle": "Sushi crevette",
+                    "photo": "sushi-crevette.png",
+                    "prix": 3.80,
+                    "quantite": 2
+                } ,
+                {
+                    "libelle": "Sushi daurade",
+                    "photo": "sushi-daurade.png",
+                    "prix": 3.80,
+                    "quantite": 2
+                },
+                {
+                    "libelle": "Sushi saumon kameha",
+                    "photo": "sushi-saumon-kameha.png",
+                    "prix": 4.20,
+                    "quantite": 3
+                },
+                {
+                    "libelle": "Sushi asperge miso",
+                    "photo": "sushi-asperge-miso.png",
+                    "prix": 5.90,
+                    "quantite": 3
+                }
+            ],
+            "maki" : [
+                {
+                    "libelle": "Maki saumon",
+                    "photo": "maki-saumon.png",
+                    "prix": 5.30,
+                    "quantite": 6
+                },
+                {
+                    "libelle": "Maki thon",
+                    "photo": "maki-thon.png",
+                    "prix": 5.50,
+                    "quantite": 6
+                },
+                {
+                    "libelle": "Maki avocat wasabi",
+                    "photo": "maki-avocat-wasabi.png",
+                    "prix": 4.50,
+                    "quantite": 6
+                },
+                {
+                    "libelle": "Maki salmon roll",
+                    "photo": "maki-salmon-roll.png",
+                    "prix": 5.40,
+                    "quantite": 6
+                },
+                {
+                    "libelle": "Maki cheese avocat",
+                    "photo": "maki-cheese-avocat.png",
+                    "prix": 4.40,
+                    "quantite": 6
+                }
+            ],
+            "california" : [
+                {
+                    "libelle": "California saumon avocat",
+                    "photo": "california-saumon-avocat.png",
+                    "prix": 6.10,
+                    "quantite": 6
+                },
+                {
+                    "libelle": "California daurade carotte",
+                    "photo": "california-daurade-carotte-ora.png",
+                    "prix": 6.50,
+                    "quantite": 6
+                },
+                {
+                    "libelle": "California ikura mozza",
+                    "photo": "california-ikura-mozza.png",
+                    "prix": 6.10,
+                    "quantite": 6
+                },
+                {
+                    "libelle": "California pacific",
+                    "photo": "california-pacific.png",
+                    "prix": 6.60,
+                    "quantite": 6
+                },
+                {
+                    "libelle": "California fresh salmon",
+                    "photo": "california-fresh-salmon.png",
+                    "prix": 6.40,
+                    "quantite": 6
+                },
+                {
+                    "libelle": "California saumon fume",
+                    "photo": "california-saumon-fume.png",
+                    "prix": 6.90,
+                    "quantite": 6
+                }
+            ]
+        }
+    },
+    "avis":
+    {
+        "code_url": "avis",
+        "libelle": "Avis des clients",
+        "avis_liste": [
+            {
+                "pseudo": "Véronique T.",
+                "nombre_etoiles": "5",
+                "commentaire": "Très bon, je recommande chaudement cette enseigne !"
+            },
+            {
+                "pseudo": "Gérard G.",
+                "nombre_etoiles": "4",
+                "commentaire": "J'enlève un point car nous avons attendu trop longtemps avant d'être servi."
+            },
+            {
+                "pseudo": "Marie L.",
+                "nombre_etoiles": "5",
+                "commentaire": "Impeccable !"
+            },
+            {
+                "pseudo": "Patricia V.",
+                "nombre_etoiles": "3",
+                "commentaire": "Sushis de bonne qualité, par contre les makis étaient un peu secs."
+            },
+            {
+                "pseudo": "Kevin R.",
+                "nombre_etoiles": "3",
+                "commentaire": "Les sushis n'étaient pas assez cuits."
+            },
+            {
+                "pseudo": "Jean F.",
+                "nombre_etoiles": "4",
+                "commentaire": "Une bonne surprise."
+            },
+            {
+                "pseudo": "Nicolas S.",
+                "nombre_etoiles": "5",
+                "commentaire": "C'était délicieux, voulez-vous que je vous lise le temps des tempêtes ?"
+            },
+            {
+                "pseudo": "Aurélien T.",
+                "nombre_etoiles": "3",
+                "commentaire": "Bien mais sans plus, j'attends des progrès au second semestre."
+            },
+            {
+                "pseudo": "Mélanie V.",
+                "nombre_etoiles": "0",
+                "commentaire": "J'en ai encore des crampes d'estomac, je refuse d'y retourner !"
+            },
+            {
+                "pseudo": "Timothée R.",
+                "nombre_etoiles": "5",
+                "commentaire": "Nous avons été charmés par la beauté et le gout de vos plats."
+            },
+            {
+                "pseudo": "Jean-Baptiste D.",
+                "nombre_etoiles": "5",
+                "commentaire": "Très bon accueil et serveurs à l'écoute."
+            }   
+        ]
+    },
+    "contact":
+    {
+        "code_url": "contact",
+        "libelle": "Contact",
+        "horaires": {
+            "lundi": "fermé",
+            "du mardi au vendredi": "10h30 - 14h30 / 17h30 - 22h30",
+            "samedi et dimanche": "10h30 - 15h00 / 17h00 - 23h00"
+        },
+        "coordonnees": {
+            "adresse": "28 avenue de la République",
+            "ville": "Clermont-Ferand",
+            "code_postal": "63000",
+            "telephone": "07 88 66 99 22",
+            "mail": "menu_sushi@gmail.com"
+        }       
+    }
+}

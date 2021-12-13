@@ -1,0 +1,9 @@
+# Turn rewrite engine on
+Options +FollowSymlinks
+RewriteEngine on
+
+# map neat URL to internal URL
+RewriteRule ^marque$   index.php [nc,qsa]
+RewriteRule ^carte$   index.php [nc,qsa]
+RewriteRule ^marque/([0-9]+)$   index.php [nc,qsa]
+RewriteRule ^carte/([0-9]+)$   index.php [nc,qsa]

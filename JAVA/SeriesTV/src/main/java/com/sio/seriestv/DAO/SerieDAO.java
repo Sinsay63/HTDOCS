@@ -7,8 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -28,7 +26,8 @@ public class SerieDAO {
             String cheminPhoto = result.getString("imgCouverture");
             Date date = result.getDate("dateDiffusion");
             int nbEpisode = result.getInt("nbEpisodes");
-            SerieDTO serie = new SerieDTO(id, nom, date, nbEpisode, cheminPhoto);
+            SerieDTO serie = new SerieDTO(nom, date, nbEpisode, cheminPhoto);
+            serie.setId(id);
             listeSeries.add(serie);
         }
         return listeSeries;
@@ -36,7 +35,7 @@ public class SerieDAO {
 
     public static void deleteSerie(SerieDTO serie) throws SQLException {
         Connection bdd = DataBaseLinker.getConnexion();
-        
+
         deleteActeurFromSerie(serie);
         PreparedStatement state = bdd.prepareStatement("DELETE FROM Serie WHERE idSerie = ?");
         state.setInt(1, serie.getId());
@@ -82,8 +81,8 @@ public class SerieDAO {
         String cheminPhoto = result.getString("imgCouverture");
         Date date = result.getDate("dateDiffusion");
         int nbEpisode = result.getInt("nbEpisodes");
-        SerieDTO serie = new SerieDTO(id, nom, date, nbEpisode, cheminPhoto);
-
+        SerieDTO serie = new SerieDTO(nom, date, nbEpisode, cheminPhoto);
+        serie.setId(id);
         PreparedStatement state2 = bdd.prepareStatement("SELECT idActeur FROM serie_acteur WHERE idSerie = ?");
         state2.setInt(1, id);
         ResultSet result2 = state2.executeQuery();
@@ -155,11 +154,23 @@ public class SerieDAO {
     public static void createSerie(SerieDTO serie) throws SQLException {
         Connection bdd = DataBaseLinker.getConnexion();
 
-        PreparedStatement state = bdd.prepareStatement("INSERT INTO serie(nomSerie,imgCouverture,dateDiffusion,nbDiffusion) VALUES(?,?,?,?)");
+        PreparedStatement state = bdd.prepareStatement("INSERT INTO serie(nomSerie,imgCouverture,dateDiffusion,nbEpisodes) VALUES(?,?,?,?)");
+        state.setString(1, serie.getNom());
+        state.setString(2, "file:images/lucifer.png");
+        state.setDate(3, (java.sql.Date) serie.getDateDiffusion());
+        state.setInt(4, serie.getNbEpisodes());
+        state.executeUpdate();
+    }
+
+    public static void updateSerie(SerieDTO serie) throws SQLException {
+        Connection bdd = DataBaseLinker.getConnexion();
+
+        PreparedStatement state = bdd.prepareStatement("UPDATE serie SET nomSerie = ?,imgCouverture = ?,dateDiffusion = ?,nbEpisodes = ? WHERE idSerie = ?");
         state.setString(1, serie.getNom());
         state.setString(2, serie.getImgCouverture());
         state.setDate(3, (java.sql.Date) serie.getDateDiffusion());
         state.setInt(4, serie.getNbEpisodes());
+        state.setInt(5, serie.getId());
         state.executeUpdate();
     }
 }

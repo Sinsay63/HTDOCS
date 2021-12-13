@@ -2,93 +2,156 @@ package com.sio.seriestv;
 
 import com.sio.seriestv.DAO.SerieDAO;
 import com.sio.seriestv.DTO.SerieDTO;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class SerieTV implements Initializable {
 
-    private int cpt = 0;
+    @FXML
+    private Button btnAddSerie;
+
+    private File selectedFile = null;
 
     @FXML
-    private Label title;
-
-    @FXML
-    private GridPane grilleSeries;
-    
+    private ScrollPane scrollPane;
 
     @FXML
     public void createCatalogue() throws SQLException {
-        grilleSeries.getChildren().clear();
-        grilleSeries.setMinWidth(500);
-        grilleSeries.setMinHeight(500);
-        grilleSeries.setMaxWidth(500);
-        grilleSeries.setMaxHeight(500);
-        grilleSeries.setMaxSize(500, 500);
-
-        int size = SerieDAO.getAllSeries().size() - 1;
-        if (grilleSeries.getChildren() != null) {
-            for (SerieDTO serie : SerieDAO.getAllSeries()) {
-                Image img = new Image(getClass().getResourceAsStream("/images/" + serie.getImgCouverture()));
-                ImageView imgView = new ImageView(img);
-                imgView.setImage(img);
-                imgView.setFitHeight(100);
-                imgView.setFitWidth(100);
-                Label nomSerie = new Label(serie.getNom());
-                HBox div = new HBox();
-                grilleSeries.add(div, cpt % 2, cpt / 2);
-                div.getChildren().addAll(imgView,nomSerie);
-                EventHandler<MouseEvent> switchDetails = new EventHandler<>() {
-                    @Override
-                    public void handle(MouseEvent ev) {
-                        try {
-                            switchToDetails(ev);
-                        }
-                        catch (IOException ex) {
-                            Logger.getLogger(SerieTV.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        catch (SQLException ex) {
-                            Logger.getLogger(SerieTV.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+        scrollPane.setContent(null);
+        ArrayList<VBox> VboxList = new ArrayList<>();
+        VBox vbox = new VBox();
+        for (SerieDTO serie : SerieDAO.getAllSeries()) {
+            Image img = new Image(getClass().getResourceAsStream(serie.getImgCouverture()));
+            ImageView imgView = new ImageView(img);
+            imgView.setImage(img);
+            imgView.setFitHeight(200);
+            imgView.setFitWidth(245);
+            Label nomSerie = new Label(serie.getNom());
+            nomSerie.setStyle("font-size: 15px;");
+            VBox div = new VBox();
+            div.getChildren().addAll(imgView, nomSerie);
+            nomSerie.setPrefWidth(245);
+            nomSerie.setTextAlignment(TextAlignment.CENTER);
+            VboxList.add(div);
+            EventHandler<MouseEvent> switchDetails = new EventHandler<>() {
+                @Override
+                public void handle(MouseEvent ev) {
+                    try {
+                        switchToDetails(ev, serie);
                     }
-                };
-                nomSerie.addEventHandler(MouseEvent.MOUSE_CLICKED, switchDetails);
-                if (cpt < size) {
-                    cpt++;
+                    catch (IOException ex) {
+                        Logger.getLogger(SerieTV.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    catch (SQLException ex) {
+                        Logger.getLogger(SerieTV.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-            }
+            };
+            div.addEventHandler(MouseEvent.MOUSE_CLICKED, switchDetails);
         }
-        else {
-            grilleSeries.getChildren().clear();
+        for (VBox box : VboxList) {
+            vbox.getChildren().add(box);
         }
-    }
-
-    private void deleteSerieOnClick(MouseEvent event) throws SQLException {
-        Label nomSerie = (Label) event.getSource();
-        SerieDAO.deleteSerie(Data.Tserie);
+        scrollPane.setContent(vbox);
     }
 
     @FXML
-    private void switchToDetails(MouseEvent ev) throws IOException, SQLException {
-        Label nomSerie = (Label) ev.getSource();
-        Data.Tserie = SerieDAO.getSerieByNom(nomSerie.getText());
+    private void switchToDetails(MouseEvent ev, SerieDTO serie) throws IOException, SQLException {
+        Data.Tserie = serie;
         App.setRoot("details serie");
+    }
+
+    public void addSerie() {
+        popUpAjoutSerie(Data.stage);
+    }
+
+    public void popUpAjoutSerie(final Stage primaryStage) {
+        Label erreur = new Label("Veuillez remplir tous les champs.");
+        final Stage dialog = new Stage();
+
+        dialog.setTitle("Ajout d'une série");
+        dialog.initModality(Modality.WINDOW_MODAL);
+        dialog.initOwner(primaryStage);
+        VBox dialogVbox = new VBox(20);
+        Text type = new Text("Ajout d'une série au catalogue");
+        TextField nom = new TextField("");
+        TextField nbEpisodes = new TextField("");
+        FileChooser file = new FileChooser();
+        Button btnImg = new Button("Sélectionner une image de couverture");
+        DatePicker dateDiff = new DatePicker();
+        dateDiff.setPromptText("Choisir la date de diffusion");
+        nom.setPromptText("Saisir son nom");
+        nbEpisodes.setPromptText("Saisir le nombre d'épisodes");
+        btnImg.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                selectedFile = file.showOpenDialog(dialog);
+            }
+        });
+        file.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
+        Button addSeriebtn = new Button("Ajouter la série");
+        dialogVbox.getChildren().addAll(type, nom, nbEpisodes, btnImg, dateDiff, addSeriebtn);
+        addSeriebtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                if (!nom.getText().equals("") && selectedFile != null && !selectedFile.getName().equals("") && dateDiff != null && dateDiff.getValue() != null && !nbEpisodes.getText().equals("")) {
+                    String nomSerie = nom.getText();
+                    Date dateDiffusion = Date.valueOf(dateDiff.getValue());
+                    int nombreEpisodes = Integer.parseInt(nbEpisodes.getText());
+                    String imgCouverture = selectedFile.getName();
+                    try {
+                        Path copied = Paths.get("images/" + nomSerie + ".png");
+                        Path originalPath = Paths.get(imgCouverture.replace("file:/", ""));
+                        Files.copy(originalPath, copied, StandardCopyOption.REPLACE_EXISTING);
+                        SerieDTO serie = new SerieDTO(nomSerie, dateDiffusion, nombreEpisodes, "");
+                        SerieDAO.createSerie(serie);
+                        createCatalogue();
+                        dialog.hide();
+                    }
+                    catch (IOException | SQLException ex) {
+                        Logger.getLogger(SerieTV.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                }
+                else {
+                    if (!dialogVbox.getChildren().contains(erreur)) {
+                        dialogVbox.getChildren().add(erreur);
+                    }
+                }
+            }
+        });
+        Scene dialogScene = new Scene(dialogVbox, 400, 400);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 
     @Override
@@ -100,6 +163,5 @@ public class SerieTV implements Initializable {
         catch (SQLException ex) {
             Logger.getLogger(SerieTV.class.getName()).log(Level.SEVERE, null, ex);
         }
-        TextArea txt = new TextArea("TEST REMPLACEMENT");
     }
 }

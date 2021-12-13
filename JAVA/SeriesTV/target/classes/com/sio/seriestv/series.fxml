@@ -4,37 +4,20 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="scene1" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sio.seriestv.SerieTV">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="720.0">
+      <Pane layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="455.0">
          <children>
-            <Label fx:id="title" alignment="CENTER" layoutX="3.0" layoutY="14.0" onMouseClicked="#createCatalogue" prefHeight="58.0" prefWidth="704.0" text="NETFLIX EN FAIT">
+            <Label fx:id="title" alignment="CENTER" layoutX="-1.0" layoutY="14.0" onMouseClicked="#createCatalogue" prefHeight="58.0" prefWidth="449.0" text="Netflix">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
-            <ScrollPane layoutX="105.0" layoutY="92.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="505.0">
-               <content>
-                  <GridPane fx:id="grilleSeries" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="498.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                  </GridPane>
-               </content>
-            </ScrollPane>
-            <Button layoutX="503.0" layoutY="614.0" mnemonicParsing="false" text="Ajouter une série" />
+            <ScrollPane fx:id="scrollPane" layoutX="105.0" layoutY="92.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="255.0" />
+            <Button fx:id="btnAddSerie" layoutX="179.0" layoutY="611.0" mnemonicParsing="false" onAction="#addSerie" text="Ajouter une série" />
          </children>
       </Pane>
    </children>

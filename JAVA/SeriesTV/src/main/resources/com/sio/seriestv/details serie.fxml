@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -10,32 +11,36 @@
 
 <AnchorPane fx:id="scene2" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sio.seriestv.DetailsSerieTV">
    <children>
-      <Pane layoutX="1.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="588.0">
+      <Pane layoutX="1.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="455.0">
          <children>
-            <Label fx:id="labNomSerie" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="51.0" prefHeight="17.0" prefWidth="588.0" text="Nom série" textAlignment="CENTER">
+            <Label fx:id="labNomSerie" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="63.0" prefHeight="51.0" prefWidth="455.0" text="Nom série" textAlignment="CENTER">
                <font>
                   <Font size="35.0" />
                </font>
             </Label>
-            <ScrollPane fx:id="scrollPaneActeurs" layoutX="58.0" layoutY="407.0" prefHeight="150.0" prefWidth="471.0" />
-            <ImageView fx:id="imgSerie" fitHeight="199.0" fitWidth="200.0" layoutX="195.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="btnDeleteSerie" layoutX="434.0" layoutY="636.0" mnemonicParsing="false" onAction="#deleteSerie" text="Supprimer la série">
+            <ScrollPane fx:id="scrollPaneActeurs" layoutX="58.0" layoutY="407.0" prefHeight="150.0" prefWidth="342.0" />
+            <ImageView fx:id="imgSerie" fitHeight="200.0" fitWidth="200.0" layoutX="130.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../images/arrow.jpg" />
+               </image></ImageView>
+            <Button fx:id="btnDeleteSerie" layoutX="295.0" layoutY="605.0" mnemonicParsing="false" onAction="#deleteSerie" text="Supprimer la série">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Label fx:id="labDateDiffusion" layoutX="231.0" layoutY="333.0" text="Date de diffusion : ">
+            <Label fx:id="labDateDiffusion" layoutX="61.0" layoutY="336.0" text="Date de diffusion : ">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="labNbEpisodes" layoutX="232.0" layoutY="368.0" text="Nombre d'épisodes:">
+            <Label fx:id="labNbEpisodes" layoutX="58.0" layoutY="373.0" text="Nombre d'épisodes:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <Button fx:id="btnRetourCatalogue" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToCatalogue" text="Retour au catalogue" />
-            <Button fx:id="btnAddActeur" layoutX="420.0" layoutY="565.0" mnemonicParsing="false" onAction="#add" text="Créer un acteur" />
+            <Button fx:id="btnAddActeur" layoutX="58.0" layoutY="567.0" mnemonicParsing="false" onAction="#add" text="Créer un acteur" />
+            <Button fx:id="btnEditSerie" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#modifSerie" text="Modifier la série" />
          </children>
       </Pane>
    </children>
